@@ -1,0 +1,41 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Image Downloader</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link href="{% static 'dl_images/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="icon" type="image/svg+xml" href="{% static 'dl_images/icon/favicon.svg' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="bg-light p-4 p-sm-5 my-4 rounded">
+                <h1>Image Downloader</h1>
+                <h2 id="timer"></h2>
+            </div>
+            <form method="post" action="" class="fom-horizontal">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_url" class="col-sm-4 control-label">URL:</label>
+                    <div class="col-sm-8 my-1">{{form.url|add_class:'form-control'}}</div>
+                    <button type="submit" class="btn btn-primary my-1" id="submit">Start</button>
+                </div>
+            </form>
+            <div id="progressbar"></div>
+            <section class="border rounded p-4 mt-2">
+                <h2>Settings</h2>
+                <div>Recursion Depth</div>
+                <div>White Access Control List</div>
+                <div></div>
+                <button class="btn btn-primary my-1">Apply</button>
+                <button class="btn btn-primary my-1">Clear</button>
+                <button class="btn btn-primary my-1">Reset</button>
+            </section>
+        </div>
+        <script src="{% static 'dl_images/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'dl_images/js/jquery.min.js' %}"></script>
+        <script src="{% static 'dl_images/js/progress.js' %}"></script>
+    </body>
+</html>
