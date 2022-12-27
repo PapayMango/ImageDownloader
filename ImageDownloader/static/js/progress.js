@@ -6,6 +6,8 @@ function create_progress_bar(){
         <div>
             <div id="timer"></div>
             <div id="process"></div>
+            <div id="a_list"></div>
+            <div id="i_list"></div>
         </div>`
     document.getElementById('progressbar').innerHTML = progress
     startDL();
@@ -27,7 +29,7 @@ function startDL(){
         // console.log('success')
         // console.log('data : ' + data['p'])
         // console.log('data : ' + data['t'])
-        // console.log(typeof data)
+        console.log(data)
         p = data['p']
         t = data['t']
         if (t != 0){
@@ -35,6 +37,8 @@ function startDL(){
             // console.log(r)
             $('.progress-bar').css('width', r*100 + '%')
             $('#process').text('progress ' + p + ' in ' + t)
+            $('#a_list').text(data['a'])
+            $('#i_list').text(data['b'])
         }
         if(!data['f']){
             setTimeout(startDL,2000)

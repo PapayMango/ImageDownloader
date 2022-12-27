@@ -19,7 +19,7 @@ count = 0
 
 def dl(url,depth=0,ulist=None,hlist=None):
 # def dl(url,depth=0,ulist=None,hlist=tree()):
-    print('dl start')
+
     depth_ = depth
     url_ = url
     # max_depth = 1
@@ -139,12 +139,14 @@ def dl(url,depth=0,ulist=None,hlist=None):
                 src_ = reshapeSrc(b['data-src'])
             else:    
                 src_ = b['src']
+            vi.set_ilist(hlist_.get_array())
             imageDL(src_,False)
         except Exception as e:
             print(e)
     for c in a:
         try:
             dl(c['href'],depth_+1,list_,hlist_)
+            vi.set_alist(list_.get_array())
             if depth_ == 0:
                 progress += 1
                 vi.set_process(progress)
@@ -210,3 +212,5 @@ class tree:
             c = c + 1
         # print('tree : ' + str(self.tree))
         return True
+    def get_array(self):
+        return self.tree

@@ -3,9 +3,6 @@
 		{
 			"path": "."
 		},
-		{
-			"path": "../Django_Project"
-		}
 	],
 	"settings": {}
 }
