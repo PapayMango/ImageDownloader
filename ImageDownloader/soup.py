@@ -7,19 +7,22 @@ from . import views as vi
 import sys
 from pathlib import Path 
 
-IMAGE_ROOT_DIR = Path(__file__).resolve().parent
+IMAGE_ROOT_DIR = Path(__file__).resolve().parent.parent
 IMAGE_DIR = IMAGE_ROOT_DIR/'images/'
-STR_IMAGE_DIR = str(IMAGE_DIR)
+STR_IMAGE_DIR = str(IMAGE_DIR) + '/'
+print(STR_IMAGE_DIR)
+MAX_DEPTH = 2
 
 sys.setrecursionlimit(2000)
 print(sys.getrecursionlimit())
 count = 0
 
 def dl(url,depth=0,ulist=None,hlist=None):
+# def dl(url,depth=0,ulist=None,hlist=tree()):
 
     depth_ = depth
     url_ = url
-    max_depth = 5
+    # max_depth = 1
 
     if ulist is None:
         list_ = tree()
@@ -30,6 +33,8 @@ def dl(url,depth=0,ulist=None,hlist=None):
     else:
         hlist_ = hlist
 
+    # hlist_ = hlist
+    # list_ = ulist
     processes = 0
     progress = 0
 
@@ -80,7 +85,8 @@ def dl(url,depth=0,ulist=None,hlist=None):
                 imageDL(url,True)
                 return False
             tag['href'] = url
-            if depth_ == max_depth:
+            # if depth_ == max_depth:
+            if depth_ == MAX_DEPTH:
                 return False
             return list_.append(url)
         return False
@@ -146,29 +152,61 @@ def dl(url,depth=0,ulist=None,hlist=None):
         except Exception as e:
             print(e)
     return True
+
+# class tree:
+#     def __init__(self):
+#         self.tree = []
+#     def append(self,a):
+#         c = 1
+#         index = 0
+#         r = rg.P_reshapeURL_g.findall(a)
+#         r = r[1:len(r)]
+#         for a in r:
+#             if len(self.tree) == index:
+#                 self.tree.append({}) 
+#             l = self.tree[index]
+#             if a in l:
+#                 if len(r) == c:
+#                     return False
+#                 if l[a] == 0:
+#                     l[a] = len(self.tree)
+#                 index = l[a]
+#             else:
+#                 if len(r) == c:
+#                     l[a] = 0
+#                     return True
+#                 l[a] = len(self.tree)
+#                 index = l[a]
+#             c = c + 1
+#         return True
 class tree:
     def __init__(self):
         self.tree = []
     def append(self,a):
+        # print('tree : ' + str(self.tree))
         c = 1
         index = 0
         r = rg.P_reshapeURL_g.findall(a)
         r = r[1:len(r)]
         for a in r:
             if len(self.tree) == index:
-                self.tree.append({}) 
+                self.tree.append({})
+                self.tree[index]['set'] = set()
             l = self.tree[index]
-            if a in l:
+            # if a in l:
+            if a in l['set']:
                 if len(r) == c:
                     return False
                 if l[a] == 0:
                     l[a] = len(self.tree)
                 index = l[a]
             else:
+                l['set'].add(a)
                 if len(r) == c:
                     l[a] = 0
                     return True
                 l[a] = len(self.tree)
                 index = l[a]
             c = c + 1
+        # print('tree : ' + str(self.tree))
         return True

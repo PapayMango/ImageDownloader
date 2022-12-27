@@ -16,4 +16,3 @@ P_reshapeSrc_c = re.compile('^/[^/]+')
 P_reshapeSrc_d = re.compile('https?://[^/]+')
 
 print('regex loaded')
-

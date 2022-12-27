@@ -4,7 +4,6 @@ function create_progress_bar(){
             <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
         </div>`
     document.getElementById('progressbar').innerHTML = progress
-    console.log('c');
     startDL();
 }
 
@@ -40,6 +39,7 @@ function startDL(){
 var time = 0;
 (function ($) {
     $('#submit').on('click',(event) => {
+        console.log(event);
         create_progress_bar();
         setInterval(() => {
             $('#timer').text(time + 's');
@@ -47,5 +47,3 @@ var time = 0;
         }, 1000);
     })
 })(jQuery);
-
-console.log('s');
