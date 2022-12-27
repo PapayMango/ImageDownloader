@@ -19,7 +19,7 @@ count = 0
 
 def dl(url,depth=0,ulist=None,hlist=None):
 # def dl(url,depth=0,ulist=None,hlist=tree()):
-
+    print('dl start')
     depth_ = depth
     url_ = url
     # max_depth = 1

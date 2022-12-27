@@ -26,7 +26,7 @@ def index(request):
    form = search_form()
 
    if aj:
-      return JsonResponse({'p':process,'t':total,'s':d})
+      return JsonResponse({'p':process,'t':total,'s':d,'a':1})
 
    return render(request,temp,{'form':form,'message':msg})
 

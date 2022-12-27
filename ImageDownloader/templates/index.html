@@ -13,9 +13,9 @@
         <div class="container">
             <div class="bg-light p-4 p-sm-5 my-4 rounded">
                 <h1>Image Downloader</h1>
-                <h2 id="timer"></h2>
+                <!-- <h2 id="timer"></h2> -->
             </div>
-            <form method="post" action="" class="fom-horizontal">
+            <form method="post" action="" class="fom-horizontal" id="url_form">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="id_url" class="col-sm-4 control-label">URL:</label>
@@ -36,6 +36,7 @@
         </div>
         <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
         <script src="{% static '/js/jquery.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
         <script src="{% static '/js/progress.js' %}"></script>
     </body>
 </html>
